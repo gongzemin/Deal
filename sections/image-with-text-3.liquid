@@ -1,0 +1,173 @@
+<div class="slide-image-text" style="margin:{{section.settings.home_block_2}};">
+  {% if section.settings.enable_block_fullwidth %} 
+  <div class="full-width">
+    {% else %}
+    <div class="container">
+      {% endif %}
+      <div class="row page-width">
+        {% if section.blocks.size > 0 %}
+
+        <div class="block-feature-{{ block.id }} center slider">
+          {% for block in section.blocks %}
+          <div class="feature-content block-item-{{ block.id }} ">
+            <div class="col-xs-12 feature-item">
+              {% if block.settings.image != blank %}
+              {{ block.settings.image | img_url: '2048x' | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="feature-item feature-text col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-center">
+              {% if block.settings.title != blank %}
+              <h2 class="h3" style="color:{{block.settings.color_for_tittle }}">{{ block.settings.title }}</h2>
+              {% endif %}
+              {% if block.settings.text != blank %}
+              <div class="rte-setting"><p style="color:{{ block.settings.color_for_text }}">{{ block.settings.text }}</p></div>
+              {% endif %}
+              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}">
+                {{ block.settings.button_label }}
+              </a>
+              {% endif %}
+            </div>
+            <style>
+              .block-item-{{ block.id }} a{color:{{block.settings.button_label_color}}; }
+              .block-item-{{ block.id }} a:hover{color:{{block.settings.button_label_color_hover}};}
+            </style>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".center").slick({
+        lazyLoad: 'ondemand',
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: {{ section.settings.home4_collection_carousel_item }},
+        dots: false,
+        centerPadding: '25%',
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              centerMode: true,
+              centerPadding: '20px',
+              slidesToShow: {{ section.settings.home4_collection_carousel_item }}
+            }
+          }
+        ]
+      });
+    })
+  </script>
+{% schema %}
+  {
+  "name": "Image with text 3",
+  "class": "index-section section",
+    "max_blocks": 6,
+    "settings": [
+     {
+        "type": "text",
+        "id": "home_block_2",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+	{
+        "type": "checkbox",
+        "id": "enable_block_fullwidth",
+        "label": "Enable Block Full Width "
+      },
+            {
+              "type": "text",
+              "id": "home4_collection_carousel_item",
+              "label": "Limit Item",
+              "default": "5"
+            }
+	],
+    "blocks": [
+        {
+          "type": "block",
+          "name": "Block",
+          "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+  		{
+            "type": "color",
+            "id": "color_for_tittle",
+            "label": "Heading Color",
+            "default": "#000",
+            "info": "Default Value: #2d2d2d"
+          },
+  		{
+            "type": "color",
+            "id": "color_for_text",
+            "label": "Text Color",
+            "default": "#000",
+            "info": "Default Value: #2d2d2d"
+          },
+		 {
+            "type": "color",
+            "id": "button_label_color",
+            "label": "Button Label Color",
+            "default": "#c7b299",
+            "info": "Default Value: #2d2d2d"
+          },
+		 {
+            "type": "color",
+            "id": "button_label_color_hover",
+            "label": "Text Color Hover",
+            "default": "#c7b299",
+            "info": "Default Value: #2d2d2d"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Heading",
+            "default": "Image with text"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Text Link"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "link"
+          }
+         ]
+      }
+	],
+    "presets": [
+        {
+          "name": "Image with text 3",
+          "category": "Image",
+          "blocks": [
+            {
+              "type": "block"
+            }
+          ]
+        }
+  	]
+ }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

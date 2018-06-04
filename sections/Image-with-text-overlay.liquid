@@ -1,0 +1,153 @@
+{% if section.settings.image != blank %}
+<style>
+
+  @media screen and (max-width: 600px) {
+    .hero--{{ section.id }} {
+      background-image: url('{{ section.settings.image | img_url: '600x600' }}');
+        }
+  }
+
+  @media screen and (min-width: 601px) and (max-width: 1024px) {
+    .hero--{{ section.id }} {
+      background-image: url('{{ section.settings.image | img_url: '1024x1024' }}');
+        }
+  }
+
+  @media screen and (min-width: 1025px) and (max-width: 1600px) {
+    .hero--{{ section.id }} {
+      background-image: url('{{ section.settings.image | img_url: '1600x1600' }}');
+        }
+  }
+
+  @media screen and (min-width: 1601px) {
+    .hero--{{ section.id }} {
+      background-image: url('{{ section.settings.image | img_url: '2048x2048' }}');
+        }
+  }
+</style>
+{% endif %}
+<div class="hero-wr">
+  {% if section.settings.display_layout == 'style_3' %}
+  <div class="container">
+    {% endif %}
+    <div style="height:{{section.settings.height}}; margin:{{section.settings.margin_secction}}" class="{% if section.settings.display_layout == 'style_2' %}style_2 {% endif %}{% if section.settings.display_layout == 'style_3' %}style_3 {% endif %}hero hero--{{ section.id }} hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}">
+      {% if section.settings.image == blank %}
+      <div class="placeholder-background">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+      {% endif %}
+      <div class="container" style="height:{{section.settings.height}};position: relative;">
+        <div class="hero__inner">
+          <div class="page-width text-center">
+            {% if section.settings.header_title != blank %}
+            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.header_title | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.header_title | split: '|' | last }}</span>
+              {% else %}
+              {{ section.settings.header_title | split: '|' | first }}
+              {% endif %}
+            </h2>
+            {% endif %}
+            {% if section.settings.text != blank %}
+            <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.text | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.text | split: '|' | last }}</span>
+              {% else %}
+              {{ section.settings.text | split: '|' | first }}
+              {% endif %}
+            </div>
+            {% endif %}
+            {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a href="{{ section.settings.button_link }}" class="btn hero__btn">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.button_label | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.button_label | split: '|' | last }}</span>
+              {% else %}
+              {{ section.settings.button_label | split: '|' | first }}
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if section.settings.display_layout == 'style_3' %}
+  </div>
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Image with text overlay",
+  "class": "index-section index-section--flush section",
+  "settings": [
+	{
+	"type": "select",
+      "id": "display_layout",
+      "label": "Select Layout",
+      "default": "normal",
+      "options": [
+        {
+        "value": "normal",
+        "label": "Layout Style 1"
+        },
+        {
+        "value": "style_2",
+        "label": "Layout Style 2"
+        },
+        {
+        "value": "style_3",
+        "label": "Layout Style 3"
+        }
+      ]
+      },
+    {
+      "type": "text",
+      "id": "height",
+      "label": "Section Height",
+      "default": "400px"
+    },
+	
+    {
+      "type": "text",
+      "id": "margin_secction",
+      "label": "Margin",
+      "default": "0px 0px 0px 0px"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Title",
+      "default": "Image with text overlay"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text overlay",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

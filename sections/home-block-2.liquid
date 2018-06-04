@@ -1,0 +1,387 @@
+{% if section.settings.layout_use == 'mansonry'  %} 
+{{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
+{% endif %}
+<div class="home2-block-category {% if section.settings.layout_use == 'mansonry'  %} mansonry{% endif %}{% if section.settings.layout_use == 'image'  %} home-11 normal-image{% endif %}{% if section.settings.layout_use == 'background'  %} background-image{% endif %}" style="margin:{{section.settings.home_block_2}};">
+  {% if section.settings.enable_block_fullwidth %} 
+  <div class="full-width">
+    {% else %}
+    <div class="container">
+      {% endif %}
+      <div class="row page-width feature-row">
+        {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+        {%- case block.settings.width -%}
+        {% when '16%' %}
+        {%- assign class_width = 'col-md-2 col-xs-12' -%}
+        {% when '25%' %}
+        {%- assign class_width = 'col-md-3 col-xs-12' -%}
+        {% when '34%' %}
+        {%- assign class_width = 'col-md-4 col-xs-12' -%}
+        {% when '42%' %}
+        {%- assign class_width = 'col-md-5 col-xs-12' -%}
+        {% when '50%' %}
+        {%- assign class_width = 'col-md-6 col-xs-12' -%}
+        {% when '58%' %}
+        {%- assign class_width = 'col-md-7 col-xs-12' -%}
+        {% when '66%' %}
+        {%- assign class_width = 'col-md-8 col-xs-12' -%}
+        {% when '75%' %}
+        {%- assign class_width = 'col-md-9 col-xs-12' -%}
+        {% when '84%' %}
+        {%- assign class_width = 'col-md-10 col-xs-12' -%}
+        {% when '100%' %}
+        {%- assign class_width = 'col-md-12 col-xs-12' -%}
+        {%- endcase -%}
+        <div class="{% if block.settings.layout == 'top' %} normal-image-top{% endif %}{% if block.settings.layout == 'bottom' %} normal-image-bottom{% endif %} {{class_width}} {% if section.settings.layout_use == 'background'%}section-background{% endif %}" style="
+                                                                                                                             {% if section.settings.layout_use == 'background'%}height:{{ block.settings.height }}; background-size:cover;   display: table;width:100%;
+                                                                                                                             background-image: url('{{ block.settings.image | img_url: '2048x2048' }}');
+                                                                                                                             {% endif %}
+                                                                                                                             ">
+          {% if section.settings.layout_use != 'background'%}
+            {% capture image_layout %}
+            <div class="{% if block.settings.layout != 'top' and block.settings.layout != 'bottom'%}feature-row__item {% else %}col-xs-12 feature-item feature-item-image{% endif %}">
+              {% if block.settings.image != blank %}
+              {{ block.settings.image | img_url: '2048x' | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            {% endcapture %}
+            {% endif %}
+          {% if section.settings.layout_use == 'background'%}
+          <div class="container">
+            {% endif %}
+
+            {% if section.settings.layout_use == 'background'%}
+            <div class="row background-row">
+              {% endif %}
+              <div class="feature-block block-feature-{{ block.id }} {% if section.settings.layout_use == 'background'%}hero__inner {%endif %}"  style="padding:{{ block.settings.home_padding_item }};" >
+                <div class=" {% if block.settings.layout != 'top' and block.settings.layout != 'bottom'%}feature-row {% else %} row feature-content{% endif %}">
+                  {% if block.settings.layout != 'right' and  block.settings.layout != 'bottom' %}
+                  {{ image_layout }}
+                  {% endif %}
+
+                  {% if section.settings.layout_use == 'background'%}
+                  <div class="col-xs-12 col-sm-12 col-md-5 col-md-offset-4">
+                    {% endif %}
+                    <div class="{% if block.settings.layout != 'top' and block.settings.layout != 'bottom'%}feature-row__item {% else %} feature-item col-xs-12 {% endif %}feature-row__text feature-row__text--{{ block.settings.layout }}">
+                      {% if block.settings.header_title != blank %}
+                      <h3 class="h3" style="color:{{block.settings.color_for_tittle }}">
+                        {% if settings.enable_multilang %}
+                        <span class="lang1">{{ block.settings.header_title | split: '|' | first }}</span>
+                        <span class="lang2">{{ block.settings.header_title | split: '|' | last }}</span>
+                        {% else %}
+                        {{ block.settings.header_title | split: '|' | first }}
+                        {% endif %}
+                      </h3>
+                      {% endif %}
+                      {% if block.settings.text != blank %}
+                      <div class="rte-setting featured-row__subtext"><p style="color:{{ block.settings.color_for_text }}">
+                        {% if settings.enable_multilang %}
+                        <span class="lang1">{{ block.settings.text | split: '|' | first }}</span>
+                        <span class="lang2">{{ block.settings.text | split: '|' | last }}</span>
+                        {% else %}
+                        {{ block.settings.text | split: '|' | first }}
+                        {% endif %}
+                        </p></div>
+                      {% endif %}
+                    </div>
+                    {% if section.settings.layout_use == 'background'%}
+                  </div>
+                  {% endif %}
+                  {% if section.settings.layout_use == 'background'%}
+                  <div class="col-xs-12 col-sm-12 col-md-3 text-center">
+                    {% endif %}
+                    {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                    <a href="{{ block.settings.button_link }}" class="btn">
+                      {% if settings.enable_multilang %}
+                      <span class="lang1">{{ block.settings.button_label | split: '|' | first }}</span>
+                      <span class="lang2">{{ block.settings.button_label | split: '|' | last }}</span>
+                      {% else %}
+                      {{ block.settings.button_label | split: '|' | first }}
+                      {% endif %}
+                    </a>
+                    {% endif %}
+                    {% if section.settings.layout_use == 'background'%}
+                  </div>
+                  {% endif %}
+                  {% if block.settings.layout != 'left' and  block.settings.layout != 'top'%}
+                  {{ image_layout }}
+                  {% endif %}
+                  <style>
+                    .feature-block.block-feature-{{ block.id }} .btn{color:{{block.settings.button_label_color}};background:{{block.settings.button_label_bg }};border-color: {{ block.settings.button_label_boder }} }
+                    .feature-block.block-feature-{{ block.id }} .btn:hover{color:{{block.settings.button_label_color_hover}};background:{{block.settings.button_label_bg_hover }};border-color: {{ block.settings.button_label_boder_hover }} }
+                  </style>
+                </div>
+              </div>
+
+              {% if section.settings.layout_use == 'background'%}
+            </div>
+            {% endif %}
+            {% if section.settings.layout_use == 'background'%}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% if section.settings.layout_use == 'mansonry'  %} 
+  <script>
+    jQuery(document).ready(function() {
+      var outwidth = jQuery('.home2-block-category .page-width').width();
+      console.log(outwidth);
+      var $container = $('.home2-block-category .page-width');
+      isotope = function () {
+        $container.isotope({
+
+          layoutMode: 'masonry', 		
+          masonry: {
+            columnWidth: 1
+          }					
+        });
+      };
+
+      jQuery(window).resize(isotope); 
+    });
+    window.onload =  function(){ setTimeout( function(){ isotope();window.onload() },500) };
+    jQuery(window).load(function() {         
+
+    });
+  </script> 
+  {% endif %}
+{% schema %}
+  {
+  "name": "Image with text",
+  "class": "index-section section",
+    "max_blocks": 6,
+    "settings": [
+     {
+        "type": "text",
+        "id": "home_block_2",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+	{
+        "type": "checkbox",
+        "id": "enable_block_fullwidth",
+        "label": "Enable Block Full Width "
+      },
+  		
+          {
+            "type": "select",
+            "id": "layout_use",
+            "label": "Style:",
+            "default": "image",
+            "options": [
+  			
+              {
+                "value": "image",
+                "label": "Normal"
+              },
+  			{
+                      "value": "mansonry",
+                      "label": "Mansonry"
+                    },
+              {
+                "value": "background",
+                "label": "Background Image"
+              }
+            ]
+          }
+	],
+    "blocks": [
+        {
+          "type": "block",
+          "name": "Block",
+          "settings": [
+              {
+                  "type": "text",
+                  "id": "height",
+                  "label": "Height For Layout Background",
+                  "default": "400px"
+                },
+  				{
+                  "type": "text",
+                  "id": "home_padding_item",
+                  "label": "Padding",
+                  "default": "0px 0px 0px 0px"
+                },
+				{
+                  "type": "select",
+                  "id": "width",
+                  "label": "Container width",
+                  "default": "100%",
+                  "options": [
+                    {
+                      "value": "16%",
+                      "label": "2 Columns - 1/6"
+                    },
+                    {
+                      "value": "25%",
+                      "label": "3 Columns - 1/4"
+                    },
+                    {
+                      "value": "34%",
+                      "label": "4 Columns - 1/3"
+                    },
+                    {
+                      "value": "42%",
+                      "label": "5 Columns - 5/12"
+                    },
+                    {
+                      "value": "50%",
+                      "label": "6 Columns - 1/2"
+                    },
+                    {
+                      "value": "58%",
+                      "label": "7 Columns - 7/12"
+                    },
+                    {
+                      "value": "66%",
+                      "label": "8 Columns - 2/3"
+                    },
+                    {
+                      "value": "75%",
+                      "label": "9 Columns - 3/4"
+                    },
+                    {
+                      "value": "84%",
+                      "label": "10 Columns - 5/6"
+                    },
+                    {
+                      "value": "100%",
+                      "label": "12 Columns - 1/1"
+                    }
+                  ]
+                },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout For Image",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Image on left"
+              },
+              {
+                "value": "right",
+                "label": "Image on right"
+              },
+              {
+                "value": "top",
+                "label": "Image on Top"
+              },
+              {
+                "value": "bottom",
+                "label": "Image on Bottom"
+              }
+            ]
+          },
+  		{
+            "type": "color",
+            "id": "color_for_tittle",
+            "label": "Heading Color",
+            "default": "#000",
+            "info": "Default Value: #2d2d2d"
+          },
+  		{
+            "type": "color",
+            "id": "color_for_text",
+            "label": "Text Color",
+            "default": "#000",
+            "info": "Default Value: #2d2d2d"
+          },
+ 		 {
+            "type": "color",
+            "id": "button_label_bg",
+            "label": "Button Background Color ",
+            "default": "#fff",
+            "info": "Default Value: #fff"
+          },
+ 		 {
+            "type": "color",
+            "id": "button_label_boder",
+            "label": "Button Border Color ",
+            "default": "#fff",
+            "info": "Default Value: #fff"
+          },
+		 {
+            "type": "color",
+            "id": "button_label_color",
+            "label": "Button Label Color",
+            "default": "#c7b299",
+            "info": "Default Value: #2d2d2d"
+          },
+ 		 {
+            "type": "color",
+            "id": "button_label_bg_hover",
+            "label": "Hover Background Color ",
+            "default": "#fff",
+            "info": "Default Value: #fff"
+          },
+ 		 {
+            "type": "color",
+            "id": "button_label_boder_hover",
+            "label": "Button Border Color",
+            "default": "#fff",
+            "info": "Default Value: #fff"
+          },
+		 {
+            "type": "color",
+            "id": "button_label_color_hover",
+            "label": "Text Color Hover",
+            "default": "#c7b299",
+            "info": "Default Value: #2d2d2d"
+          },
+          {
+            "type": "textarea",
+            "id": "header_title",
+            "label": "Heading",
+            "default": "Image with text"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Text Link"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "link"
+          }
+         ]
+      }
+	],
+    "presets": [
+        {
+          "name": "Image with text",
+          "category": "Image",
+          "blocks": [
+            {
+              "type": "block"
+            }
+          ]
+        }
+  	]
+ }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

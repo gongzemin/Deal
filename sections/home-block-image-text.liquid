@@ -1,0 +1,195 @@
+
+<div class="home2-block-image-text " style="margin:{{section.settings.home_block_2}};">
+  {% if section.settings.enable_block_fullwidth %} 
+  <div class="full-width">
+    {% else %}
+    <div class="container">
+      {% endif %}
+    
+        {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+        <div class="feature-block block-feature-{{ block.id }} "   >
+          <div class=" row feature-content">
+            {% capture image_layout %}
+            <div class="col-md-6 col-sm-6 col-xs-12 {% if block.settings.layout != 'top' and block.settings.layout != 'bottom'%}feature-row__item feature-row-right {% else %}col-md-12 feature-item{% endif %}">
+              {% if block.settings.image != blank %}
+              {{ block.settings.image | img_url: '2048x' | img_tag: block.settings.image.alt, 'feature-row__image' }}
+              {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            {% endcapture %}
+            {% if block.settings.layout != 'right'%}
+            {{ image_layout }}
+            {% endif %}
+            <div class="col-md-6 col-sm-6 col-xs-12  {% if block.settings.layout != 'top' and block.settings.layout != 'bottom'%}feature-row__item {% else %} feature-item col-md-12 {% endif %}feature-row__text feature-row__text--{{ block.settings.layout }}">
+              <div class="image">
+                {% if block.settings.image2 != blank %}
+                {{ block.settings.image2 | img_url: '2048x' | img_tag: block.settings.image.alt, 'feature-row__image' }}
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              {% if block.settings.header_title != blank %}
+              <h2 class="h3" style="color:{{block.settings.color_for_tittle }}">{{ block.settings.header_title | escape }}</h2>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+              <div class="rte-setting featured-row__subtext" style="color:{{ block.settings.color_for_text }}">{{ block.settings.text }}</div>
+              {% endif %}
+              {% if block.settings.button_label != blank  %}
+              <a href="{{ block.settings.button_link }}" class="btn">
+                {{ block.settings.button_label }}
+              </a>
+              {% endif %}
+            </div>
+            {% if block.settings.layout != 'left'%}
+            {{ image_layout }}
+            {% endif %}
+            <style>
+              .feature-block.block-feature-{{ block.id }} .btn{color:{{block.settings.button_label_color}};background:{{block.settings.button_label_bg }};}
+              .feature-block.block-feature-{{ block.id }} .btn:hover{color:{{block.settings.button_label_color_hover}};background:{{block.settings.button_label_bg_hover }};}
+            </style>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+  </div>
+
+{% schema %}
+  {
+  "name": "Image with text 2",
+  "class": "index-section section",
+    "max_blocks": 1,
+    "settings": [
+     {
+        "type": "text",
+        "id": "home_block_2",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+	{
+        "type": "checkbox",
+        "id": "enable_block_fullwidth",
+        "label": "Enable Block Full Width "
+      }
+	],
+    "blocks": [
+        {
+          "type": "block",
+          "name": "Block",
+          "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout For Image",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Image on left"
+              },
+              {
+                "value": "right",
+                "label": "Image on right"
+              }
+            ]
+          },
+  		{
+            "type": "color",
+            "id": "color_for_tittle",
+            "label": "Heading Color",
+            "default": "#000",
+            "info": "Default Value: #2d2d2d"
+          },
+  		{
+            "type": "color",
+            "id": "color_for_text",
+            "label": "Text Color",
+            "default": "#000",
+            "info": "Default Value: #2d2d2d"
+          },
+ 		 {
+            "type": "color",
+            "id": "button_label_bg",
+            "label": "Button Background Color ",
+            "default": "#fff",
+            "info": "Default Value: #fff"
+          },
+		 {
+            "type": "color",
+            "id": "button_label_color",
+            "label": "Button Label Color",
+            "default": "#c7b299",
+            "info": "Default Value: #2d2d2d"
+          },
+ 		 {
+            "type": "color",
+            "id": "button_label_bg_hover",
+            "label": "Hover Background Color ",
+            "default": "#fff",
+            "info": "Default Value: #fff"
+          },
+		 {
+            "type": "color",
+            "id": "button_label_color_hover",
+            "label": "Text Color Hover",
+            "default": "#c7b299",
+            "info": "Default Value: #2d2d2d"
+          },
+          {
+            "type": "text",
+            "id": "header_title",
+            "label": "Title",
+            "default": "Image with text 2"
+          },
+ 		 {
+  	          "type": "image_picker",
+            "id": "image2",
+            "label": "Image 2"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Text Link"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "link"
+          }
+         ]
+      }
+	],
+    "presets": [
+        {
+          "name": "Image with text 2",
+          "category": "Image",
+          "blocks": [
+            {
+              "type": "block"
+            }
+          ]
+        }
+  	]
+ }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

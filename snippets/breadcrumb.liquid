@@ -1,0 +1,113 @@
+{% if settings.display_breadcrumb %}
+{% comment %}
+Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+{% endcomment %}
+{% unless template == 'index' %}
+<div class="clearfix breadcrumb-wrap">
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="breadcrumb_position">
+            <h2>  
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ collection.title | split: '|' | first }}</span>
+              <span class="lang2">{{ collection.title | split: '|' | last }}</span>
+              {% else %}
+              {{ collection.title | split: '|' | first }}
+              {% endif %}    
+              {% if template contains 'page' %} 
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ page_title | split: '|' | first }}</span>
+              <span class="lang2">{{ page_title | split: '|' | last }}</span>
+              {% else %}
+              {{ page_title | split: '|' | first }}
+              {% endif %}    
+              {% endif %}
+            </h2>
+            <a href="/" title="Back to the frontpage">Home</a>  
+            {% if template contains 'product' %}  
+            {% if collection %}
+            <span class="icon"></span>  
+            {% if collection.handle %}
+            {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+            {% if settings.enable_multilang %}
+            <span class="lang1">{{ collection.title | split: '|' | first }}</span>
+            <span class="lang2">{{ collection.title | split: '|' | last }}</span>
+            {% else %}
+            {{ collection.title | split: '|' | first }}
+            {% endif %}
+            {% endif %}
+            {% endif %}
+
+            <span class="icon"></span>
+            {% if settings.enable_multilang %}
+            <span class="lang1"><strong>{{ product.title | split: '|' | first }}</strong></span>
+            <span class="lang2"><strong>{{ product.title | split: '|' | last }}</strong></span>
+            {% else %}
+            <strong>{{ product.title | split: '|' | first }}</strong>
+            {% endif %}
+
+            {% elsif template contains 'collection' and collection.handle %}
+
+            {% if current_tags %}
+            <span class="icon"></span>
+            {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+            {% if settings.enable_multilang %}
+            <span class="lang1">{{ collection.title | split: '|' | first }}</span>
+            <span class="lang2">{{ collection.title | split: '|' | last }}</span>
+            {% else %}
+            {{ collection.title | split: '|' | first }}
+            {% endif %}
+            <span class="icon"></span>
+            <strong>{{ current_tags.first }}</strong>
+            {% else %}
+            <span class="icon"></span>
+            {% if settings.enable_multilang %}
+            <span class="lang1"><strong>{{ collection.title | split: '|' | first }}</strong></span>
+            <span class="lang2"><strong>{{ collection.title | split: '|' | last }}</strong></span>
+            {% else %}
+            <strong>{{ collection.title | split: '|' | first }}</strong>
+            {% endif %}
+            {% endif %}
+
+            {% elsif template == 'article' %}
+
+            <span class="icon"></span>
+            {{ blog.title | link_to: blog.url }}
+            <span class="icon"></span>
+            {% if settings.enable_multilang %}
+            <span class="lang1"><strong>{{ article.title | split: '|' | first }}</strong></span>
+            <span class="lang2"><strong>{{ article.title | split: '|' | last }}</strong></span>
+            {% else %}
+            <strong>{{ article.title | split: '|' | first }}</strong>
+            {% endif %}
+
+            {% elsif template contains 'page' %}
+
+            <span class="icon"></span>
+            {% if settings.enable_multilang %}
+            <span class="lang1"><strong>{{ page.title | split: '|' | first }}</strong></span>
+            <span class="lang2"><strong>{{ page.title | split: '|' | last }}</strong></span>
+            {% else %}
+            <strong>{{ page.title | split: '|' | first }}</strong>
+            {% endif %}
+
+            {% else %}
+            <span class="icon"></span>
+            {% if settings.enable_multilang %}
+            <span class="lang1"><strong>{{ page_title | split: '|' | first }}</strong></span>
+            <span class="lang2"><strong>{{ page_title | split: '|' | last }}</strong></span>
+            {% else %}
+            <strong>{{ page_title | split: '|' | first }}</strong>
+            {% endif %}
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+{% endunless %}
+{% endif %}

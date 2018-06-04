@@ -1,0 +1,281 @@
+{% include section.settings.product_layouts %}
+{% schema %}
+    {
+  "name": "Product Pages",
+  "settings": [
+{
+      "type": "select",
+      "id": "product_layouts",
+      "label": "Product Layouts",
+      "options": [
+        {
+          "value": "product-horizontal",
+          "label": "Product Horizontal Thumb"
+        },
+        {
+          "value": "product-vertical",
+          "label": "Product Vertical Thumb"
+        },
+        {
+          "value": "product-sticky-image",
+          "label": "Product Sticky Image"
+        },
+        {
+          "value": "product-right-content",
+          "label": "Sticky Right Content"
+        },
+        {
+          "value": "product-accordion",
+          "label": "Product Sticky Accordion"
+        },
+        {
+          "value": "product-image-center",
+          "label": "Product Image Center"
+        },
+        {
+          "value": "product-slide-image",
+          "label": "Product Slider Gallery"
+        },
+        {
+          "value": "product-image-top",
+          "label": "Product Image Top"
+        }
+      ],
+      "default": "product-horizontal"
+    },
+    {
+      "type": "header",
+      "content": "Product Swatch"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "use_color_swatch",
+      "label": "Use Color Swatch",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "image_gallery",
+      "label": "Use Gallery",
+      "default": true
+    },
+    {
+      "type": "radio",
+      "id": "swatch_style",
+      "options": [
+        {
+          "value": "color",
+          "label": "Swatch color (use code color or name color)"
+        },
+        {
+          "value": "color_image",
+          "label": "Image upload ( upload a file name_color.png )"
+        },
+        {
+          "value": "image_variant",
+          "label": "Image variant for page Product View"
+        }
+      ],
+      "label": "Swatch Layout "
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_image_zoom",
+      "label": " Enable image zoom"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_quantity_selector",
+      "label": "Show quantity selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "display_prev_next_product",
+      "label": "Enable Prev\/Next Product",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "display_availability",
+      "label": "Enable Availability",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wishlist",
+      "label": "Enable Wishlist",
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+      "id": "display_product_detail_description",
+      "label": "Enable Product Description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_description_title",
+      "label": "Product Description Title",
+      "default": "Product Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_product_reviews",
+      "label": "Enable Product Reviews",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_review_title",
+      "label": "Product Reviews Title",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "header",
+      "content": "Custom Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_customtabs_1",
+      "label": "Enable Custom tabs 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_customtabs_title_1",
+      "label": "Custom Tabs Title 1",
+      "default": "Title 1"
+    },
+    {
+      "type": "textarea",
+      "id": "product_customtabs_content_1",
+      "label": "Custom Tabs Content 1",
+      "default": "Content 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_customtabs_2",
+      "label": "Enable Custom tabs 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_customtabs_title_2",
+      "label": "Custom Tabs Title 2",
+      "default": "Title 2"
+    },
+    {
+      "type": "textarea",
+      "id": "product_customtabs_content_2",
+      "label": "Custom Tabs Content 2",
+      "default": "Content 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_customtabs_3",
+      "label": "Enable Custom tabs 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_customtabs_title_3",
+      "label": "Custom Tabs Title 3",
+      "default": "Title 3"
+    },
+    {
+      "type": "textarea",
+      "id": "product_customtabs_content_3",
+      "label": "Custom Tabs Content 3",
+      "default": "Content 3"
+    },
+    {
+      "type": "header",
+      "content": "Social Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_icon_isocal",
+      "label": "Enable Icon Social Product Detail ?",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "icon_isocal_1",
+      "label": "Enable Facebook",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "icon_isocal_2",
+      "label": "Enable Twitter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "icon_isocal_3",
+      "label": "Enable Printerest",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "icon_isocal_4",
+      "label": "Enable Google+",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Related Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_related_products",
+      "label": "Enable Related Products",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_products_title",
+      "label": "Title of related products block",
+      "default": "Related Products"
+    },
+    {
+      "type": "text",
+      "id": "number_of_related_products",
+      "label": "Number of related products",
+      "default": "8"
+    },
+    {
+      "type": "radio",
+      "id": "related_products_type",
+      "label": "Type of related products",
+      "options": [
+        {
+          "value": "tags",
+          "label": "By Tags"
+        },
+        {
+          "value": "collection",
+          "label": "By Collection"
+        }
+      ],
+      "default": "collection"
+    }
+  ]
+}
+{% endschema %}
+
+    {% stylesheet %}
+    {% endstylesheet %}
+
+    {% javascript %}
+    {% endjavascript %}

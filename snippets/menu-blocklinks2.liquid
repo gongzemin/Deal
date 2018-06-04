@@ -1,0 +1,74 @@
+<div class="row row-eq-height {% if hasimg %} menu-sublist{% endif %}">
+  {% if linklists[mega_link_handle] != empty %}
+  {% assign mega_img_count = 0 %}
+  {% assign display_mega = false %}
+  {% for bocklink_title in linklists[mega_link_handle].links %}
+  {% assign mega_img_count = mega_img_count | plus: 1 %}
+  <div class="col-sm-{{ settings[menu_col_links] }} menu-col" >
+    <div class="mega-col-inner ">
+      <div class="top-lever-1">
+        {% capture mega_img_link %}mega_col_{{ intMega }}_{{mega_img_count}}.png{% endcapture %}
+
+        {% capture display_mega_img %}enable_img_{{ intMega }}_{{ mega_img_count }}{% endcapture %}
+        {% capture display_mega_img_link %}enable_img_{{ intMega }}{{ mega_img_count }}{% endcapture %}
+        {% capture display_mega_img_link %}mega_col_{{ intMega }}_{{mega_img_count}}{% endcapture %}
+
+        {% if hasimg %}
+        <div class="mega_col_img">
+          <a href="{{ bocklink_title.url }}">
+            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ mega_img_link | asset_url }}">
+          </a>
+        </div>
+        {% endif %}
+
+        <div class="menu-title"><a href="{{ bocklink_title.url }}">
+          {% if settings.enable_multilang %}
+          <span class="lang1">{{ bocklink_title.title | split: '|' | first }}</span>
+          <span class="lang2">{{ bocklink_title.title | split: '|' | last }}</span>
+          {% else %}
+          {{ bocklink_title.title | split: '|' | first }}
+          {% endif %}
+          </a></div>
+      </div>
+      {% if linklists[bocklink_title.handle] != empty %}
+      <div class="widget-inner">
+        <ul class="nav-links">
+          {% if linklists[bocklink_title.handle] != empty %}
+          {% for sub_link in linklists[bocklink_title.handle].links %}
+          <li class="{% if sub_link.active %}active{% endif %}"><a href="{{ sub_link.url }}">
+            {% if settings.enable_multilang %}
+            <span class="lang1">{{ sub_link.title | split: '|' | first }}</span>
+            <span class="lang2">{{ sub_link.title | split: '|' | last }}</span>
+            {% else %}
+            {{ sub_link.title | split: '|' | first }}
+            {% endif %}
+            </a>
+            {% if linklists[sub_link.handle] != empty %}
+            <ul>
+              {% for sub_link_13 in linklists[sub_link.handle].links %}
+              <li class="13">
+                <a href="{{ sub_link.url }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ sub_link_13.title | split: '|' | first }}</span>
+                  <span class="lang2">{{ sub_link_13.title | split: '|' | last }}</span>
+                  {% else %}
+                  {{ sub_link_13.title | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </li>
+
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+

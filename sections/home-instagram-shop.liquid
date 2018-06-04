@@ -1,0 +1,88 @@
+<div class="instagram-shop" style="margin: {{ section.settings.home_instagram_shop }};">
+  {% if section.settings.show_instagram_boxed %}
+  <div class="">
+    {% else %}
+    <div class="container">
+      {% endif  %}
+      {% if section.settings.instagram_title != blank %}
+      <h3>
+        {% if settings.enable_multilang %}
+        <span class="lang1">{{ section.settings.instagram_title | split: '|' | first }}</span>
+        <span class="lang2">{{ section.settings.instagram_title | split: '|' | last }}</span>
+        {% else %}
+        {{ section.settings.instagram_title | split: '|' | first }}
+        {% endif %}
+      </h3>
+      {% endif %}
+      {% if section.settings.instagram_des != blank %}
+      <div class="instagram-content">
+        <span>&nbsp;</span>
+
+        {% if settings.enable_multilang %}
+        <span class="lang1">{{ section.settings.instagram_des | split: '|' | first }}</span>
+        <span class="lang2">{{ section.settings.instagram_des | split: '|' | last }}</span>
+        {% else %}
+        {{ section.settings.instagram_des | split: '|' | first }}
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {{ section.settings.embed_code }}
+
+      {% if section.settings.show_instagram_boxed %}
+    </div>
+    {% endif  %}
+
+  </div>
+{% schema %}
+  {
+  
+	"name": " Instagram Shop ",
+    "class": "index-section section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "home_instagram_shop",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_instagram_boxed",
+        "label": "Enable Full Width"
+      },
+      {
+        "type": "text",
+        "id": "instagram_title",
+        "label": "Heading",
+        "default": " Instagram"
+      },
+      {
+        "type": "text",
+        "id": "instagram_des",
+        "label": "Instagram Description",
+        "default": "Instagram has become one of the most important marketing channel these days so its important to leverage the benefits of your Instagram traffic by showing real authentic photos on your Shopify store."
+      },
+      {
+        "type": "textarea",
+        "id": "embed_code",
+        "label": "Shoppable embed code",
+        "default": "<script src='https://snapppt.com/widgets/widget_loader/66d62275-6016-4fd0-84bb-50280f1d549a/grid.js' class='snapppt-widget'></script>",
+        "info": "[Where do I find code?](http:\/\/snapppt.com\/embeds)"
+      }
+	],
+    "presets": [
+        {
+          "name": "Instagram Shop",
+          "category": "Collection"
+          
+        }
+  	]
+ }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

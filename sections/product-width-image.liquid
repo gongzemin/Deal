@@ -1,0 +1,217 @@
+
+<div class="product-image-home grid grid-image-left  {% if section.settings.width == "50%" %} image-bigger {% endif %}block-{{section.id}}" style="margin:{{ section.settings.block_product_1 }}">
+
+  <div class="{% if section.settings.show_product_boxed_gird %} container-full {% else %} container {% endif %}">
+    {% comment %} Product home 1 {% endcomment %}
+    <div class="row">
+      {% capture image_layout_product %}
+      {% if section.settings.block_product_image != blank %}
+      <div class="images"  >
+        <img class="b-lazy" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.block_product_image | img_url: '2048x'}}">
+      </div>
+      {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+      {% endcapture %}
+      {% if section.settings.layout_product =='left' %}
+      <div class="{% if section.settings.width == "25%" %}col-md-4 col-sm-4 hidden-sm{% endif %}
+                  {% if section.settings.width == "50%" %} col-md-6 col-sm-12{% endif %} hidden-xs left-product">
+        {{image_layout_product }}
+      </div>
+      {% endif %}
+      <div class="{% if section.settings.width == "25%" %}col-md-8 col-sm-8{% endif %}
+                  {% if section.settings.width == "50%" %} col-md-6 col-sm-12{% endif %} col-xs-12 right-product">
+
+        {% if section.settings.home_product_title_1 != blank %}
+        <div class="block-title">
+          <h2><span>{{ section.settings.home_product_title_1 }}</span></h2>
+        </div>
+        {% endif %}
+        {%- assign collection = collections[section.settings.collection] -%}
+        {%- assign product_limit = section.settings.limit_of_columns_product_1 -%}
+        <div class="top-product">
+          {% assign tabs_collection = section.settings.collection_product_1 %}
+          {% assign row_limit_setting = section.settings.product_list_limit_1 %}
+          {% assign number_colum_layout = section.settings.show_carousel_layout_product_1 %}
+          {% assign number_colum = section.settings.limit_of_columns_product_1 %}
+          <div class="box-content">
+            <div id="{{ section.settings.home_product_title_1 | handleize }}" class="center slider">
+              {% for product in collections[tabs_collection].products limit: row_limit_setting %}          
+              {% assign current_collection = collections[tabs_collection] %}
+
+              {% include 'product-grid-item' %}
+              {% else %}
+              {% for i in (1..product_limit) %}
+              <div class="grid__item_add {{ grid_item_width }}">
+                <div class="grid-view-item">
+                  <a href="#" class="grid-view-item__link">
+                    {% if product.title %}
+                    {%- assign compare_at_price = product.compare_at_price -%}
+                    {%- assign price = product.price -%}
+                    {%- assign price_varies = product.price_varies -%}
+                    {%- assign available = product.available -%}
+                    {% else %}
+                    {%- assign compare_at_price = 1999 -%}
+                    {%- assign price = 1999 -%}
+                    {%- assign price_varies = false -%}
+                    {%- assign available = true -%}
+                    {% endif %}
+                    <div class="grid-view-item__image">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                    <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
+                    <div class="grid-view-item__meta">
+                      <s class="product-price__price">{{ compare_at_price | money }}</s>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
+
+              {% endfor %}
+
+            </div>
+          </div>
+          {% if section.settings.width == "50%" %}
+          
+          {% else %}
+          <script>
+            $(document).ready(function() {
+              $(".block-{{section.id}} .center").owlCarousel({
+                itemsCustom : [
+                [320, 2],
+                [360, 2],
+                [450, 2],
+                [600, 2],
+                [700, 3],
+                [1000, 3],
+                [1200, {{number_colum}}],
+                [1400, {{number_colum}}],
+                [1600, {{number_colum}}]
+                ],
+                autoPlay : false,
+                stopOnHover : false,
+
+                lazyLoad : true,
+                lazyFollow : true,
+                lazyEffect : "fade",
+                pagination : false,
+
+                // Navigation
+                navigation : true,
+                navigationText : ['<i class="cs-font clever-icon-prev"></i>','<i class="cs-font clever-icon-next"></i>'],
+                rewindNav : true,
+                scrollPerPage : false,
+                });
+            })
+          </script>
+          {% endif %}
+        </div>
+      </div>
+      {% if section.settings.layout_product =='right' %}
+      <div class="{% if section.settings.width == "25%" %}col-md-4 col-sm-4 hidden-sm{% endif %}
+                  {% if section.settings.width == "50%" %} col-md-6 col-sm-12{% endif %} hidden-xs left-product">
+        {{image_layout_product }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Grid with image",
+  "class": "index-section",
+  "settings": [
+	{
+      "type": "checkbox",
+      "id": "show_product_boxed_gird",
+      "label": "Enable Full Width"
+    },
+    {
+      "type": "text",
+      "id": "block_product_1",
+      "label": "Margin",
+      "default": "0px 0px 0px 0px"
+    },	
+{
+  "type": "select",
+  "id": "width",
+  "label": "Image width",
+  "default": "25%",
+  "options": [
+    
+    {
+      "value": "25%",
+      "label": "3 Columns - 1/4"
+    },
+    {
+      "value": "50%",
+      "label": "6 Columns - 1/2"
+    }
+  ]
+},
+	{
+            "type": "image_picker",
+            "id": "block_product_image",
+            "label": "Block Images"
+          },
+          {
+            "type": "select",
+            "id": "layout_product",
+            "label": "Layout",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Image on left"
+              },
+              {
+                "value": "right",
+                "label": "Image on right"
+              }
+            ]
+          },
+
+    {
+      "type": "text",
+      "id": "home_product_title_1",
+      "label": "Heading",
+      "default": "Product Grid"
+    },
+	{
+        "type": "collection",
+        "id": "collection_product_1",
+        "label": "Collection "
+      },
+      
+      {
+        "type": "text",
+        "id": "limit_of_columns_product_1",
+        "label": "Number of Columns",
+        "default": "4"
+      },
+      {
+        "type": "text",
+        "id": "product_list_limit_1",
+        "label": "Number of products to show at one tab",
+        "default": "12"
+      }
+
+  ],
+  "presets": [
+    {
+      "name": "Product with image",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

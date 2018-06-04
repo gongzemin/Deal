@@ -1,0 +1,116 @@
+<div class="block-home-newsletter{% if section.settings.layout_use == 'layout_2' %} newsletter-layout-2{% endif %}" style="background: {{ section.settings.color_bg_newsletter}};margin:{{section.settings.block_home_7  }};">
+  <div class="container">
+    <div class="newsletter row">
+      <div class="newsletter-left col-xs-12{% if section.settings.layout_use == 'layout_1' %} col-sm-4{% endif %}">
+        {% if section.settings.home_newsletter_title != blank %}
+        <div class="title_newsletter">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.home_newsletter_title | split: '|' | first }}</div>
+          <div class="lang2">{{ section.settings.home_newsletter_title | split: '|' | last }}</div>
+          {% else %}
+          {{ section.settings.home_newsletter_title | split: '|' | first }}
+          {% endif %}
+        </div>
+        {% endif %}
+        {% if section.settings.home_newsletter_subtitle != blank %}
+        <div class="subtitle_newsletter">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.home_newsletter_subtitle | split: '|' | first }}</div>
+          <div class="lang2">{{ section.settings.home_newsletter_subtitle | split: '|' | last }}</div>
+          {% else %}
+          {{ section.settings.home_newsletter_subtitle | split: '|' | first }}
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="content col-xs-12{% if section.settings.layout_use == 'layout_1' %} col-sm-6 col-sm-offset-2{% endif %}">
+        <form action="{{ section.settings.mailing_list_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+          <div class="input-group newsletter_form_content">
+            <input  class="input__field input-group-field" type="email" value="" name="EMAIL" aria-label="Email Address" {% if settings.enable_multilang %}data-translate="footer.footer_newsletter_content" translate-item="placeholder"{% endif %} placeholder="{{ 'footer.footer_newsletter_content' | t }}">
+            <span class="input-group-btn">
+              <input type="submit" class="btn" {% if settings.enable_multilang %}data-translate="footer.footer_newsletter_go"{% endif %} value="{{ 'footer.footer_newsletter_go' | t }}" name="subscribe">
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  
+	"name": "Newsletter",
+    "class": "index-section section",
+    "settings": [
+     
+  
+      {
+        "type": "text",
+        "id": "block_home_7",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+    {
+      "type": "color",
+      "id": "color_bg_newsletter",
+      "label": "Background Color",
+      "default": "#ffffff",
+      "info": "Default Value: #ffffff"
+    },
+		{
+            "type": "select",
+            "id": "layout_use",
+            "label": "Style:",
+            "default": "layout_1",
+            "options": [
+            {
+              "value": "layout_1",
+              "label": "Style layout 1"
+            },
+  			{
+              "value": "layout_2",
+              "label": "Style layout 2"
+            }
+            ]
+          },
+      {
+        "type": "text",
+        "id": "home_newsletter_title",
+        "label": "Heading",
+        "default": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "home_newsletter_subtitle",
+        "label": "Subheading",
+        "default": "Subscribe now to get daily updates "
+      },
+      {
+        "type": "textarea",
+        "id": "footer_newsletter_go",
+        "label": " Button Label",
+        "default": "Subscribe"
+      },
+      {
+        "type": "text",
+        "id": "mailing_list_form_action",
+        "label": "MailChimp form action URL",
+        "info": "[Where do I find my MailChimp form action URL?](http:\/\/docs.shopify.com\/support\/configuration\/store-customization\/where-do-i-get-my-mailchimp-form-action)"
+      }
+	],
+    "presets": [
+        {
+          "name": "Newsletter",
+          "category": "ADVANCED BLOCK"
+          
+        }
+  	]
+ }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

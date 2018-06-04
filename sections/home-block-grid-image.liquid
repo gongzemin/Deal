@@ -1,0 +1,388 @@
+
+{% if section.blocks.size > 0 %}
+{% for block in section.blocks %}
+<div class="home-block-grid-image" style="margin:{{section.settings.home_block_4}}">
+  {% if section.settings.enable_block_fullwidth %} 
+  <div class="full-width">
+    {% else %}
+    <div class="container">
+      {% endif %}
+      <div class="row">
+        {% if section.settings.display_layout == 'style_1'  %}
+        <div class="home-collection-item home-collection-item-1 col-xs-12 col-sm-6">
+          {% if block.settings.bg_home4_collection_1 != blank %}
+          <a href="{{ block.settings.home4_collection_1 }}">
+            <img src="{{ block.settings.bg_home4_collection_1 | img_url: '2048x'  }}">
+          </a>
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          <h3 class="h5">
+            <a href="{{ block.settings.home4_collection_1 }}">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ block.settings.home4_collection_title_1 | split: '|' | first }}</span>
+              <span class="lang2">{{ block.settings.home4_collection_title_1 | split: '|' | last }}</span>
+              {% else %}
+              {{ block.settings.home4_collection_title_1 | split: '|' | first }}
+              {% endif %}
+            </a>
+          </h3>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="row">
+            <div class="home-collection-item home-collection-item-2 col-xs-12 col-sm-6">
+              {% if block.settings.bg_home4_collection_2 != blank %}
+              <a href="{{ block.settings.home4_collection_2 }}">
+                <img src="{{ block.settings.bg_home4_collection_2 | img_url: '2048x' }}">
+              </a>
+              {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_2 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_2 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_2 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_2 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+            </div>
+
+            <div class="home-collection-item home-collection-item-3 col-xs-12 col-sm-6">
+              {% if block.settings.bg_home4_collection_3 != blank %}
+              <a href="{{ block.settings.home4_collection_3 }}">
+                <img src="{{ block.settings.bg_home4_collection_3 | img_url: '2048x' }}">
+              </a>
+              {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_3 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_3 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_3 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_3 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+            </div>
+
+            <div class="home-collection-item home-collection-item-4 col-xs-12 col-sm-12">
+              {% if block.settings.bg_home4_collection_4 != blank %}
+              <a href="{{ block.settings.home4_collection_4 }}">
+                <img src="{{ block.settings.bg_home4_collection_4 | img_url: '2048x' }}">
+              </a>
+              {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_4 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_4 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_4 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_4 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if section.settings.display_layout == 'style_2'  %}
+        <div class="home-block-grid-image-2">
+          <div class="col-xs-12 col-sm-6">
+            <div class="row">
+              <div class="home-collection-item home-collection-item-1 col-xs-12">
+                {% if block.settings.bg_home4_collection_1 != blank %}
+                <a href="{{ block.settings.home4_collection_1 }}">
+                  <img src="{{ block.settings.bg_home4_collection_1 | img_url: '2048x'  }}">
+                </a>
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_1 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_1 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_1 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_1 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+              </div>
+              <div class="home-collection-item home-collection-item-2 col-xs-12 col-sm-6">
+                {% if block.settings.bg_home4_collection_2 != blank %}
+                <a href="{{ block.settings.home4_collection_2 }}">
+                  <img src="{{ block.settings.bg_home4_collection_2 | img_url: '2048x' }}">
+                </a>
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+               <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_2 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_2 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_2 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_2 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+              </div>
+              <div class="home-collection-item home-collection-item-3 col-xs-12 col-sm-6">
+                {% if block.settings.bg_home4_collection_3 != blank %}
+                <a href="{{ block.settings.home4_collection_3 }}">
+                  <img src="{{ block.settings.bg_home4_collection_3 | img_url: '2048x' }}">
+                </a>
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_3 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_3 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_3 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_3 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="row">
+              <div class="home-collection-item home-collection-item-2 col-xs-12 col-sm-6">
+                {% if block.settings.bg_home4_collection_4 != blank %}
+                <a href="{{ block.settings.home4_collection_4 }}">
+                  <img src="{{ block.settings.bg_home4_collection_4 | img_url: '2048x' }}">
+                </a>
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_4 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_4 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_4 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_4 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+              </div>
+
+              <div class="home-collection-item home-collection-item-3 col-xs-12 col-sm-6">
+                {% if block.settings.bg_home4_collection_5 != blank %}
+                <a href="{{ block.settings.home4_collection_5 }}">
+                  <img src="{{ block.settings.bg_home4_collection_5 | img_url: '2048x' }}">
+                </a>
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_5 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_5 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_5 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_5 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+              </div>
+
+              <div class="home-collection-item home-collection-item-4 col-xs-12">
+                {% if block.settings.bg_home4_collection_6 != blank %}
+                <a href="{{ block.settings.home4_collection_6 }}">
+                  <img src="{{ block.settings.bg_home4_collection_6 | img_url: '2048x' }}">
+                </a>
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <h3 class="h5">
+                <a href="{{ block.settings.home4_collection_6 }}">
+                  {% if settings.enable_multilang %}
+                  <span class="lang1">{{ block.settings.home4_collection_title_6 | split: '|' | first }}</span>
+                  <span class="lang2">{{ block.settings.home4_collection_title_6 | split: '|' | last }}</span>
+                  {% else %}
+                  {{ block.settings.home4_collection_title_6 | split: '|' | first }}
+                  {% endif %}
+                </a>
+              </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor%}
+{% endif %}
+
+{% schema %}
+  {
+  
+	"name": "Gallery Grid",
+    "class": "index-section",
+    "max_blocks": 1,
+    "settings": [
+   {
+    "type": "select",
+      "id": "display_layout",
+      "label": "Select Layout",
+      "default": "style_1",
+      "options": [
+      {
+      "value": "style_1",
+      "label": "Grid 4 Image"
+      },
+      {
+      "value": "style_2",
+      "label": "Grid 6 Image"
+      }
+      ]
+    },
+	{
+        "type": "checkbox",
+        "id": "enable_block_fullwidth",
+        "label": "Enable Block Full Width "
+      },
+      {
+        "type": "text",
+        "id": "home_block_4",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      }
+	],
+    "blocks": [
+        {
+          "type": "block",
+          "name": "Block",
+          "settings": [
+          
+            {
+              "type": "text",
+              "id": "home4_collection_title_1",
+              "label": "Title",
+              "default": "Collection Title"
+            },
+            {
+              "type": "url",
+              "id": "home4_collection_1",
+              "label": "Link"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_home4_collection_1",
+              "label": "Images"
+            },
+            {
+              "type": "text",
+              "id": "home4_collection_title_2",
+              "label": "Title",
+              "default": "Collection Title"
+            },
+            {
+              "type": "url",
+              "id": "home4_collection_2",
+              "label": "Link"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_home4_collection_2",
+              "label": "Images"
+            },
+            {
+              "type": "text",
+              "id": "home4_collection_title_3",
+              "label": "Title",
+              "default": "Collection Title"
+            },
+            {
+              "type": "url",
+              "id": "home4_collection_3",
+              "label": "Link"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_home4_collection_3",
+              "label": "Images"
+            },
+            {
+              "type": "text",
+              "id": "home4_collection_title_4",
+              "label": "Title",
+              "default": "Collection Title"
+            },
+            {
+              "type": "url",
+              "id": "home4_collection_4",
+              "label": "Link"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_home4_collection_4",
+              "label": "Images"
+            },
+            {
+              "type": "text",
+              "id": "home4_collection_title_5",
+              "label": "Title",
+              "default": "Collection Title"
+            },
+            {
+              "type": "url",
+              "id": "home4_collection_5",
+              "label": "Link"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_home4_collection_5",
+              "label": "Images"
+            },
+            {
+              "type": "text",
+              "id": "home4_collection_title_6",
+              "label": "Title",
+              "default": "Collection Title"
+            },
+            {
+              "type": "url",
+              "id": "home4_collection_6",
+              "label": "Link"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_home4_collection_6",
+              "label": "Images"
+            }
+         ]
+      }
+	],
+    "presets": [
+        {
+          "name": "Gallery Grid",
+          "category": "Image",
+          "blocks": [
+            {
+              "type": "block"
+            }
+          ]
+        }
+  	]
+ }
+{% endschema %}
+
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

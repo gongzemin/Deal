@@ -1,0 +1,217 @@
+
+{% comment %}
+This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
+Be sure to select page.contact as the template from the admin page to have this template take effect.
+
+For information on adding more fields, visit:
+- http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
+{% endcomment %}
+
+{% comment %}
+Google Map
+{% endcomment %}
+
+
+<div class="contactus-page">
+  {% comment %}
+  Regular page content goes here.
+  {% endcomment %}
+  <div class="rte">
+    {{ page.content }}
+  </div>
+
+  {% comment %}
+  Contact form starts here
+  {% endcomment %}
+
+  <div class="container">
+    <div class="row">
+      {% if section.settings.display_google_map %}
+      <div class="maps">
+        {% if section.settings.google_map_code != blank %}
+        {{ section.settings.google_map_code }}
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="col-md-8 col-sm-7 col-xs-12 contact-left">
+        {% form 'contact' %}
+        {% comment %}
+        Successful message
+        {% endcomment %}
+        {% if form.posted_successfully? %}
+        <p class="note form-success" {% if settings.enable_multilang %}data-translate="page_cms.contact_successt"{%endif%}>
+          {{ 'page_cms.contact_success' | t }}
+        </p>
+        {% endif %}
+        {% include 'form-errors-custom' %}
+        <div id="contactFormWrapper">
+          {% if section.settings.contact_title != blank %}
+          <h2>
+            {% if settings.enable_multilang %}
+            <span class="lang1">{{ section.settings.contact_title | split: '|' | first }}</span>
+            <span class="lang2">{{ section.settings.contact_title | split: '|' | last }}</span>
+            {% else %}
+            {{ section.settings.contact_title | split: '|' | first }}
+            {% endif %}
+          </h2>
+          {% endif %}
+
+          <input type="text" name="contact[name]" id="contactFormName" {% if settings.enable_multilang %}data-translate="page_cms.contact_yourname" translate-item="placeholder"{% endif %} placeholder="{{ 'page_cms.contact_yourname' | t }}">
+
+          <input type="email" name="contact[email]" id="contactFormEmail" autocorrect="off" autocapitalize="off" {% if settings.enable_multilang %}data-translate="page_cms.contact_youremail" translate-item="placeholder"{% endif %} placeholder="{{ 'page_cms.contact_youremail' | t }}">
+
+          <textarea rows="4" name="contact[body]" id="contactFormMessage" {% if settings.enable_multilang %}data-translate="page_cms.contact_yourcomment" translate-item="placeholder"{% endif %} placeholder="{{ 'page_cms.contact_yourcomment' | t }}"></textarea>
+
+          <input type="submit" class="btn left" {% if settings.enable_multilang %}data-translate="page_cms.contact_button"{%endif%} value="{{ 'page_cms.contact_button' | t }}">
+        </div>
+        {% endform %}
+      </div>
+      <div class="col-md-4 col-sm-5 col-xs-12 contact-right">
+        <div class="content-top">
+          <h2>
+            {% if settings.enable_multilang %}
+            <span class="lang1">{{ section.settings.contact_top | split: '|' | first }}</span>
+            <span class="lang2">{{ section.settings.contact_top | split: '|' | last }}</span>
+            {% else %}
+            {{ section.settings.contact_top | split: '|' | first }}
+            {% endif %}
+          </h2>
+        </div>
+        <div class="content-bottom">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.contact_bottom | split: '|' | first }}</div>
+          <div class="lang2">{{ section.settings.contact_bottom | split: '|' | last }}</div>
+          {% else %}
+          {{ section.settings.contact_bottom | split: '|' | first }}
+          {% endif %}
+        </div>
+      </div>    
+    </div>
+  </div>
+
+  {% if section.settings.enable_newsletter_contact %}
+  <div class="newsletter-contact">
+    <div class="container">
+      <div class="newsletter row">
+        <div class="newsletter-left col-xs-12 col-sm-4">
+          {% if section.settings.home_newsletter_title != blank %}
+          <div class="title_newsletter">
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.home_newsletter_title | split: '|' | first }}</div>
+            <div class="lang2">{{ section.settings.home_newsletter_title | split: '|' | last }}</div>
+            {% else %}
+            {{ section.settings.home_newsletter_title | split: '|' | first }}
+            {% endif %}
+          </div>
+          {% endif %}
+          {% if section.settings.home_newsletter_subtitle != blank %}
+          <div class="subtitle_newsletter">
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.home_newsletter_subtitle | split: '|' | first }}</div>
+            <div class="lang2">{{ section.settings.home_newsletter_subtitle | split: '|' | last }}</div>
+            {% else %}
+            {{ section.settings.home_newsletter_subtitle | split: '|' | first }}
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="content col-xs-12 col-sm-6 col-sm-offset-2">
+          <form action="{{ section.settings.mailing_list_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+            <div class="input-group newsletter_form_content">
+              <input  class="input__field input-group-field" type="email" value="" name="EMAIL" aria-label="Email Address" {% if settings.enable_multilang %}data-translate="footer.footer_newsletter_content" translate-item="placeholder"{% endif %} placeholder="{{ 'footer.footer_newsletter_content' | t }}">
+              <span class="input-group-btn">
+                <input type="submit" class="btn" {% if settings.enable_multilang %}data-translate="footer.footer_newsletter_go"{% endif %} value="{{ 'footer.footer_newsletter_go' | t }}" name="subscribe">
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<script>
+  jQuery('.main-content > .container').removeClass('container');
+</script>
+<style>
+  .breadcrumb-wrap {
+    background-image: unset;
+    border: 0;
+    background-color: #f5f5f5;
+    display: block;
+    margin-bottom: 30px;
+  }
+  .breadcrumb_position {
+    padding: 0;
+  }
+</style>
+{% schema %}
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "display_google_map",
+        "label": "Enable Google Maps?",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "google_map_code",
+        "label": "Google Map Code"
+      },
+      {
+        "type": "text",
+        "id": "contact_title",
+        "label": "Contact Title",
+        "default": "title"
+      },
+	  {
+        "type": "text",
+        "id": "contact_top",
+        "label": "Title Right",
+        "default": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "contact_bottom",
+        "label": "Content Right",
+        "default": "Content"
+      },
+      {
+        "type": "header",
+        "content": "Newsletter Contact"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_newsletter_contact",
+        "label": "Enable Newsletter Contact",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "home_newsletter_title",
+        "label": "Heading",
+        "default": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "home_newsletter_subtitle",
+        "label": "Subheading",
+        "default": "Subscribe now to get daily updates "
+      },
+      {
+        "type": "text",
+        "id": "mailing_list_form_action",
+        "label": "MailChimp form action URL",
+        "info": "[Where do I find my MailChimp form action URL?](http:\/\/docs.shopify.com\/support\/configuration\/store-customization\/where-do-i-get-my-mailchimp-form-action)"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

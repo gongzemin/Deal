@@ -1,0 +1,41 @@
+
+{% if settings.layout_fullpage %}
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery('#fullpage').fullpage({
+      verticalCentered: false,
+      css3: true,
+      navigation: true,
+      navigationPosition: 'right',
+      autoScrolling: {% if settings.layout_fullpage_ancho =="noancho"%}false{% else %} true {% endif %},
+      scrollBar: true
+    });
+  });
+</script>
+{% endif %}
+{% if settings.layout_fullpage %}
+<div id="fullpage">
+  {% endif %}
+  {{ content_for_index }}
+  {% if settings.layout_fullpage %}
+</div>
+{% endif %}
+<script>
+  jQuery('.main-content > .container').removeClass('container');
+</script>
+{% if settings.layout_fullpage %}
+<script>
+  jQuery('body').addClass('layout-fullpage');
+</script>
+{% endif %}
+
+<script>
+  jQuery('.main-content > .container').removeClass('container');
+
+</script>
+{% if settings.layout_fullpage %}
+<script>
+
+  jQuery('body').addClass('layout-fullpage');
+</script>
+{% endif %}

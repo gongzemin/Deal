@@ -1,0 +1,155 @@
+
+<div class="home-product-grid-1" style=" margin:{{section.settings.loadmore_margin}}">
+  {% if section.settings.enable_full_width_load %}
+  <div class="full-width">
+    {% else %}
+    <div class="container">
+      {% endif  %}
+      <div class="row">
+        {% if section.settings.tabs_title_block != blank %}
+        <div class="block-title col-xs-12"><h2>
+          {% if settings.enable_multilang %}
+          <span class="lang1">{{ section.settings.tabs_title_block | split: '|' | first }}</span>
+          <span class="lang2">{{ section.settings.tabs_title_block | split: '|' | last }}</span>
+          {% else %}
+          <span>{{ section.settings.tabs_title_block | split: '|' | first }}</span>
+          {% endif %}
+          </h2></div>
+        {% endif %}
+
+        <div class="product-loadmore">
+          {% assign tabnew_collection = section.settings.tabnew_collection %}
+
+          <div class="container_custom">
+
+            <div class="load-product">
+              <div class="products-grid">
+
+                {% if section.settings.display_product_big %}
+                <div class="product-1">
+                  {% for product in collections[tabnew_collection].products limit: 1 %}   
+                  {% if forloop.first == true %}
+                  {% include 'product-grid-item' %}
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <div class="product-2">
+                  {% for product in collections[tabnew_collection].products limit: section.settings.product_list_limit %}   
+                  {% if section.settings.display_product_big %}
+                  {% if forloop.first == true %}
+                  {% else %}
+
+                  {% assign current_collection = collections[tabnew_collection] %}
+                  <div class="grids-item {{ grid_item_width }}" style="text-align:{{section.settings.title_alignment}}; float: left;">
+                    {% include 'product-grid-item' %}
+                  </div>
+
+                  {% endif %}
+                  {% else %}
+                  {% include 'product-grid-item' %}
+                  {% endif %}
+
+
+
+                  {% else %}
+                  {% for i in (1..10) %}
+                  <div class="grids-item grid__item {{ grid_item_width }} " style="width:20%;padding:0 5px;float:left">
+                    <div class="grid-item grid-view-item">
+                      <a href="#" class="grid-view-item__link">
+                        {% if product.title %}
+                        {%- assign compare_at_price = product.compare_at_price -%}
+                        {%- assign price = product.price -%}
+                        {%- assign price_varies = product.price_varies -%}
+                        {%- assign available = product.available -%}
+                        {% else %}
+                        {%- assign compare_at_price = 1999 -%}
+                        {%- assign price = 1999 -%}
+                        {%- assign price_varies = false -%}
+                        {%- assign available = true -%}
+                        {% endif %}
+                        <div class="grid-view-item__image">
+                          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                        <div class="h4 grid-view-item__title" {% if settings.enable_multilang %}data-translate="homepage.onboarding.product_title"{%endif%}>{{ 'homepage.onboarding.product_title' | t }}</div>
+                        <div class="grid-view-item__meta">
+                          <s class="product-price__price">{{ compare_at_price | money }}</s>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  {% endfor %}
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+{% schema %}
+  {
+  	  "name": "Product Grid",
+      "class": "index-section section",
+      "settings": [
+	
+      {
+        "type": "text",
+        "id": "loadmore_margin",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+
+          {
+            "type": "checkbox",
+            "id": "enable_full_width_load",
+            "label": "Enable Full Width"
+          },
+  
+    {
+      "type": "checkbox",
+      "id": "display_product_big",
+      "label": "Show Product Biger",
+      "default": true
+    },
+          {
+            "type": "text",
+            "id": "tabs_title_block",
+            "label": "Heading",
+            "default": "Product Grid"
+          },
+          {
+            "type": "text",
+            "id": "product_list_limit",
+            "label": "Limit Product",
+            "default": "10"
+          },
+         
+          {
+            "type": "collection",
+            "id": "tabnew_collection",
+            "label": "Collection"
+          }
+
+	],
+    "presets": [
+    {
+      "name": "Product Grid",
+      "category": "Collection"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

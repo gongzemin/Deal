@@ -1,0 +1,146 @@
+
+<div id="section-{{section.id}}" class="home-paralax{% if settings.layout_fullpage %} layout-fullpage{% endif %}
+{% if section.settings.text_align == 'left'%} paralax-left{% endif %}{% if section.settings.text_align == 'right'%} paralax-right{% endif %}{% if section.settings.text_align == 'center'%} paralax-center{% endif %}
+                                        ">
+  <div class="bcg skrollable skrollable-before"  data-paroller-factor="0.3"
+       style="background-image:url({{ section.settings.block_home_image | img_url: '2048x'}} );"
+       > 
+    {% if section.settings.block_home_image == blank %}
+    <div class="placeholder-background">
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+    {% endif %}
+    <div class="container">
+      <div class="parallax-text">
+        {% if section.settings.home_block_title_7 != blank %}
+        <h2 style="color: {{ section.settings.color_home_block_title }}"> {{section.settings.home_block_title_7 }}</h2>
+        {% endif %}
+        {% if section.settings.home_block_sub_title_7 != blank %}
+        <p style="color: {{ section.settings.color_home_block_sub_title }}"> {{section.settings.home_block_sub_title_7 }}</p>
+        {% endif %}
+        <div class="button-view">
+          {% if section.settings.home_block_button_lable1 != blank %}
+          <a class="button-1" href="{{ section.settings.home_block_button_link1 }}">
+            {{ section.settings.home_block_button_lable1 }}
+          </a>
+          {% endif %}
+          {% if section.settings.home_block_button_lable2 != blank %}
+          <a class="button-2" href="{{ section.settings.home_block_button_link2 }}">
+            {{ section.settings.home_block_button_lable2 }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .bcg {
+   background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
+  .home-paralax {
+    position: relative;clear: both;height:100%;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Home Paralax",
+    "class": "index-section home-paralax section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "block_home_image",
+        "label": "Image"
+      },
+          {
+            "type": "select",
+            "id": "text_align",
+            "label": "Text Align",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Text left"
+              },
+              {
+                "value": "right",
+                "label": "Text right"
+              },
+              {
+                "value": "center",
+                "label": "Text center"
+              }
+            ]
+          },
+      {
+        "type": "color",
+        "id": "color_home_block_title",
+        "label": "Color Title",
+        "default": "#ffffff",
+        "info": "Default Value: #ffffff"
+      },
+      {
+        "type": "text",
+        "id": "home_block_title_7",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "color",
+        "id": "color_home_block_sub_title",
+        "label": "Color Sub Title",
+        "default": "#ffffff",
+        "info": "Default Value: #ffffff"
+      },
+      {
+        "type": "textarea",
+        "id": "home_block_sub_title_7",
+        "label": "Subheading",
+        "default": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "home_block_button_lable1",
+        "label": "Lable",
+        "default": "Button"
+      },
+      {
+        "type": "text",
+        "id": "home_block_button_link1",
+        "label": "Link",
+        "default": "#"
+      },
+      {
+        "type": "text",
+        "id": "home_block_button_lable2",
+        "label": "Lable 2",
+        "default": "Button"
+      },
+      {
+        "type": "text",
+        "id": "home_block_button_link2",
+        "label": "Link 2",
+        "default": "#"
+      }
+	
+	],
+    "presets": [
+        {
+          "name": "Home Paralax",
+          "category": "Image"
+        }
+  	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

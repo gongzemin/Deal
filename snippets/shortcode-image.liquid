@@ -1,0 +1,5 @@
+{% case shortcode %}
+
+{% assign _content = content | split: '[image]' | last %}
+{{ _content | split: '[/image]' | first }}
+{% endcase %}

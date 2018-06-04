@@ -1,0 +1,214 @@
+<div class="page-width testimonials-wr" data-section-id="{{ section.id }}" data-section-type="quotes" style="margin:{{section.settings.home_quote_margin}}; padding: {{ section.settings.home_quote_padding }}; background: url({{ section.settings.clv_bkg_testimo | img_url: '2048x' }}); background-attachment: fixed;background-position: center center; ">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <div class="heading-block">
+      <h3 class="title" style="text-align: {{ section.settings.clv_testim_heading_align }} ">
+        {% if settings.enable_multilang %}
+        <span class="lang1">{{ section.settings.title | split: '|' | first }}</span>
+        <span class="lang2">{{ section.settings.title | split: '|' | last }}</span>
+        {% else %}
+        {{ section.settings.title | split: '|' | first }}
+        {% endif %}
+      </h3>
+    </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+    <div class="quotes-wrapper">
+      <div class="quotes-slider" id="Quotes-{{ section.id }}" data-count="{{ section.blocks.size }}">
+        {% for block in section.blocks %}
+        <div class="quotes-slide--{{ block.id }} quotes-slide-item" {{ block.shopify_attributes }}>
+          <blockquote class="quotes-slider__text text-center">
+            <span class="quote-icon"><i class="cs-font clever-icon-quotes"></i></span>
+            {% if block.settings.quote != blank %}
+            <div class="rte-setting">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ block.settings.quote | split: '|' | first }}</span>
+              <span class="lang2">{{ block.settings.quote | split: '|' | last }}</span>
+              {% else %}
+              {{ block.settings.quote | split: '|' | first }}
+              {% endif %}
+            </div>
+            {% endif %}
+            {% if block.settings.author != blank %}
+            <cite>
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ block.settings.author | split: '|' | first }}</span>
+              <span class="lang2">{{ block.settings.author | split: '|' | last }}</span>
+              {% else %}
+              {{ block.settings.author | split: '|' | first }}
+              {% endif %}
+            </cite>
+            {% endif %}
+          </blockquote>
+        </div>
+        {% endfor %}
+      </div>
+      <script>
+        $(document).ready(function() {
+
+          $("#Quotes-{{ section.id }}").owlCarousel({
+            itemsCustom : [
+            [320, {% if section.settings.clv_testimo_item_mobile != blank %} {{ section.settings.clv_testimo_item_mobile }} {% endif %}],
+            [360, {% if section.settings.clv_testimo_item_mobile != blank %} {{ section.settings.clv_testimo_item_mobile }} {% endif %}],
+            [450, {% if section.settings.clv_testimo_item_mobile != blank %} {{ section.settings.clv_testimo_item_mobile }} {% endif %}],
+            [600, {% if section.settings.clv_testimo_item_tablet != blank %} {{ section.settings.clv_testimo_item_tablet }} {% endif %}],
+            [700, {% if section.settings.clv_testimo_item_tablet != blank %} {{ section.settings.clv_testimo_item_tablet }} {% endif %}],
+            [1000, {% if section.settings.clv_testimo_item_tablet != blank %} {{ section.settings.clv_testimo_item_tablet }} {% endif %}],
+            [1200, {% if section.settings.clv_testimo_item_destop != blank %} {{ section.settings.clv_testimo_item_destop }} {% endif %}],
+            [1400, {% if section.settings.clv_testimo_item_destop != blank %} {{ section.settings.clv_testimo_item_destop }} {% endif %}],
+            [1600, {% if section.settings.clv_testimo_item_destop != blank %} {{ section.settings.clv_testimo_item_destop }} {% endif %}]
+            ],
+            autoPlay : {% if section.settings.clv_testimo_autoplay %} true {% else %} false {% endif %},
+            stopOnHover : {% if section.settings.clv_testimo_stophover %} true {% else %} false {% endif %},
+
+            lazyLoad : true,
+            lazyFollow : true,
+            lazyEffect : "fade",
+            pagination : {% if section.settings.clv_testimo_pagination %} true {% else %} false {% endif %},
+
+            // Navigation
+            navigation : {% if section.settings.clv_testimo_navigation %} true {% else %} false {% endif %},
+            navigationText : ['<i class="cs-font clever-icon-prev"></i>','<i class="cs-font clever-icon-next"></i>'],
+            rewindNav : true,
+            scrollPerPage : false,
+            });
+        })
+      </script>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "index-section",
+  "max_blocks": 9,
+  "settings": [
+	  {
+		"type": "image_picker",
+		"id": "clv_bkg_testimo",
+		"label": "Background"
+	  },
+	  {
+        "type": "text",
+        "id": "home_quote_margin",
+        "label": "Margin",
+        "default": "0px 0px 0px 0px"
+      },
+	  {
+        "type": "text",
+        "id": "home_quote_padding",
+        "label": "Padding",
+        "default": "0px"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Testimonials"
+      },
+	  {
+		"type": "select",
+		"id": "clv_testim_heading_align",
+		"label": "Heading Align",
+		"options": [
+			{
+				"value": "left",
+				"label": "Align Left"
+			},
+			{
+				"value": "center",
+				"label": "Align Center"
+			},
+			{
+				"value": "right",
+				"label": "Align Right"
+			}
+		],
+		"default": "center"
+	  },
+	  {
+		"type": "header",
+		"content": "Custom Item Testimonials"
+	  },
+	  {
+		"type": "text",
+		"id": "clv_testimo_item_mobile",
+		"label": "Item on Mobile",
+		"default": "1"
+	  },
+	  {
+		"type": "text",
+		"id": "clv_testimo_item_tablet",
+		"label": "Item on Tablet",
+		"default": "1"
+	  },
+	  {
+		"type": "text",
+		"id": "clv_testimo_item_destop",
+		"label": "Item on Destop",
+		"default": "1"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "clv_testimo_autoplay",
+		"label": "Auto play"
+	  },
+	  {
+	  	"type": "checkbox",
+		"id": "clv_testimo_stophover",
+		"label": "Stop on hover"
+	  },
+	  {
+	  	"type": "checkbox",
+		"id": "clv_testimo_pagination",
+		"label": "Show pagination"
+	  },
+	  {
+	  	"type": "checkbox",
+		"id": "clv_testimo_navigation",
+		"label": "Show navigation"
+	  }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Text",
+          "default": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Author's name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

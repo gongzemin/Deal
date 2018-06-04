@@ -1,0 +1,413 @@
+
+{% comment %}
+Regular page content goes here.
+{% endcomment %}
+<div class="about-page">
+  <div class="container">
+    {% if section.settings.enable_about_text_1 %}
+    <div class="row about-title-wr">
+      {% if section.settings.title_about_texts_1 != blank %}
+      <div class="col-xs-12 col-sm-6 about-title">
+        {% if settings.enable_multilang %}
+        <h3 class="lang1">{{ section.settings.title_about_texts_1 | split: '|' | first }}</h3>
+        <h3 class="lang2">{{  section.settings.title_about_texts_1 | split: '|' | last }}</h3>
+        {% else %}
+        <h3>{{  section.settings.title_about_texts_1 | split: '|' | first }}</h3>
+        {% endif %} 
+      </div>     
+      {% endif %}
+      {% if section.settings.title_about_texts_1 != blank %}
+      <div class="col-xs-12 col-sm-6 about-title-content">
+        {% if settings.enable_multilang %}
+        <p class="lang1">{{ section.settings.sub_title_about_texts_1 | split: '|' | first }}</p>
+        <p class="lang2">{{  section.settings.sub_title_about_texts_1 | split: '|' | last }}</p>
+        {% else %}
+        <p>{{  section.settings.sub_title_about_texts_1 | split: '|' | first }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="row">
+      <div class="about-banner col-xs-12">
+        {% if section.settings.enable_about_banner %}
+        <div class="images">
+          <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_about_banner | img_url: '1600x1600' }}" width="100%" height="100%">
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% if section.settings.enable_about_text %}
+    <div class="about-text-info row">
+      <div class="col-xs-12 col-sm-6 about-content">
+        <div class="info-item">
+          {% if section.settings.title_about_text != blank %}
+          <div class="title-about"> 
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.title_about_text | split: '|' | first }}</div>
+            <div class="lang2">{{  section.settings.title_about_text | split: '|' | last }}</div>
+            {% else %}
+            {{  section.settings.title_about_text | split: '|' | first }}
+            {% endif %}
+          </div>               
+          {% endif %}
+          {% if section.settings.sub_title_about_text != blank %}
+          <div class="text-info"> 
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.sub_title_about_text | split: '|' | first }}</div>
+            <div class="lang2">{{  section.settings.sub_title_about_text | split: '|' | last }}</div>
+            {% else %}
+            {{  section.settings.sub_title_about_text | split: '|' | first }}
+            {% endif %}
+          </div>               
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 about-content">
+        <div class="info-item">
+          {% if section.settings.title_about_text2 != blank %}
+          <div class="title-about"> 
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.title_about_text2 | split: '|' | first }}</div>
+            <div class="lang2">{{  section.settings.title_about_text2 | split: '|' | last }}</div>
+            {% else %}
+            {{  section.settings.title_about_text2 | split: '|' | first }}
+            {% endif %}
+          </div>               
+          {% endif %}
+          {% if section.settings.sub_title_about_text2 != blank %}
+          <div class="text-info"> 
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.sub_title_about_text2 | split: '|' | first }}</div>
+            <div class="lang2">{{  section.settings.sub_title_about_text2 | split: '|' | last }}</div>
+            {% else %}
+            {{  section.settings.sub_title_about_text2 | split: '|' | first }}
+            {% endif %}
+          </div>               
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if section.settings.enable_about_address %}
+    <div class="row about-address">
+      <div class="col-xs-12 col-sm-6 col-md-3 about-address-item">
+        <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_image_address_1 | img_url: '1600x1600' }}" width="100%" height="100%">
+        {% if section.settings.sub_title_about_text5 != blank %}
+        <div class="about-address-text">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.sub_title_about_text5 | split: '|' | first }}</div>
+          <div class="lang2">{{  section.settings.sub_title_about_text5 | split: '|' | last }}</div>
+          {% else %}
+          {{  section.settings.sub_title_about_text5 | split: '|' | first }}
+          {% endif %}  
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 about-address-item">
+        <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_image_address_2 | img_url: '1600x1600' }}" width="100%" height="100%">
+        {% if section.settings.sub_title_about_text6 != blank %}
+        <div class="about-address-text">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.sub_title_about_text6 | split: '|' | first }}</div>
+          <div class="lang2">{{  section.settings.sub_title_about_text6 | split: '|' | last }}</div>
+          {% else %}
+          {{  section.settings.sub_title_about_text6 | split: '|' | first }}
+          {% endif %}      
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 about-address-item"><img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_image_address_3 | img_url: '1600x1600' }}" width="100%" height="100%">
+        {% if section.settings.sub_title_about_text7 != blank %}
+        <div class="about-address-text">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.sub_title_about_text7 | split: '|' | first }}</div>
+          <div class="lang2">{{  section.settings.sub_title_about_text7 | split: '|' | last }}</div>
+          {% else %}
+          {{  section.settings.sub_title_about_text7 | split: '|' | first }}
+          {% endif %}    
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 about-address-item">
+        <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_image_address_4 | img_url: '1600x1600' }}" width="100%" height="100%">
+        {% if section.settings.sub_title_about_text8 != blank %}
+        <div class="about-address-text">
+          {% if settings.enable_multilang %}
+          <div class="lang1">{{ section.settings.sub_title_about_text8 | split: '|' | first }}</div>
+          <div class="lang2">{{  section.settings.sub_title_about_text8 | split: '|' | last }}</div>
+          {% else %}
+          {{  section.settings.sub_title_about_text8 | split: '|' | first }}
+          {% endif %} 
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    {% if section.settings.enable_about_team %}
+    <div class="row about-out-team">
+      <div class="info-item contact-items">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+          {% if section.settings.title_about_text4 != blank %}
+          <div class="title-about"> 
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ section.settings.title_about_text4 | split: '|' | first }}</div>
+            <div class="lang2">{{  section.settings.title_about_text4 | split: '|' | last }}</div>
+            {% else %}
+            {{  section.settings.title_about_text4 | split: '|' | first }}
+            {% endif %}
+          </div>               
+          {% endif %}
+        </div>
+        <div class="about-team">
+          <div class="col-xs-12 col-sm-4 about-team-item">
+            <div class="about-team-img">
+              <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_about_banner_3 | img_url: '1600x1600' }}" width="100%" height="100%">
+            </div>
+            <div class="team-member-content">
+              {{ section.settings.about_team_content_1 }}
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 about-team-item">
+            <div class="about-team-img">
+              <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_about_banner_4 | img_url: '1600x1600' }}" width="100%" height="100%">
+            </div>
+            <div class="team-member-content">
+              {{ section.settings.about_team_content_2 }}
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 about-team-item">
+            <div class="about-team-img">
+              <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_about_banner_5 | img_url: '1600x1600' }}" width="100%" height="100%">
+            </div>
+            <div class="team-member-content">
+              {{ section.settings.about_team_content_3 }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+  {% if section.settings.enable_about_banner2 %}
+  <div class="about-banner-wr">
+    <div class="images">
+      <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ section.settings.bg_about_banner_2 | img_url: '1600x1600' }}" width="100%" height="100%">
+    </div>
+    {% if section.settings.sub_title_about_text3 != blank %} 
+    <div class="about-banner-2">
+      {% if settings.enable_multilang %}
+      <div class="lang1">{{ section.settings.sub_title_about_text3 | split: '|' | first }}</div>
+      <div class="lang2">{{  section.settings.sub_title_about_text3 | split: '|' | last }}</div>
+      {% else %}
+      {{  section.settings.sub_title_about_text3 | split: '|' | first }}
+      {% endif %}     
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+<script>
+  jQuery('.main-content > .container').removeClass('container');
+</script>
+<style>.main-content {padding-bottom: 0;}</style>
+
+{% schema %}
+  {
+    "name": "About us",
+    "settings": [
+		 {
+        "type": "header",
+        "content": "About Banner"
+      },
+      {
+        "type": "header",
+        "content": "About Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_about_text_1",
+        "label": "Enable About Text?"
+      },
+      {
+        "type": "text",
+        "id": "title_about_texts_1",
+        "label": "Title",
+        "default": "About Us"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_texts_1",
+        "label": "Content",
+        "default": "Text Default"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_about_banner",
+        "label": "Enable About Banner?"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_about_banner",
+        "label": "About Images"
+      },
+      {
+        "type": "header",
+        "content": "About Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_about_text",
+        "label": "Enable About Text?"
+      },
+      {
+        "type": "text",
+        "id": "title_about_text",
+        "label": "Title 1",
+        "default": "Text Default"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text",
+        "label": "Sub Title 1",
+        "default": "Text Default"
+      },
+      {
+        "type": "text",
+        "id": "title_about_text2",
+        "label": "Title 2",
+        "default": "Text Default"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text2",
+        "label": "Sub Title 2",
+        "default": "Text Default"
+      },
+      {
+        "type": "header",
+        "content": "About Address"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_about_address",
+        "label": "Enable About Address?"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image_address_1",
+        "label": "Address Images 1"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text5",
+        "label": "Content 1",
+        "default": "Text Default"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image_address_2",
+        "label": "Address Images 2"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text6",
+        "label": "Content 2",
+        "default": "Text Default"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image_address_3",
+        "label": "Address Images 3"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text7",
+        "label": "Content 3",
+        "default": "Text Default"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image_address_4",
+        "label": "Address Images 4"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text8",
+        "label": "Content 4",
+        "default": "Text Default"
+      },
+      {
+        "type": "header",
+        "content": "About Our Team"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_about_team",
+        "label": "Enable About Address?"
+      },
+      {
+        "type": "textarea",
+        "id": "title_about_text4",
+        "label": "Headding",
+        "default": "Text Default"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_about_banner_3",
+        "label": "About Images"
+      },
+      {
+        "type": "textarea",
+        "id": "about_team_content_1",
+        "label": "Content 1",
+        "default": "Text Default"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_about_banner_4",
+        "label": "About Images"
+      },
+      {
+        "type": "textarea",
+        "id": "about_team_content_2",
+        "label": "Content 2",
+        "default": "Text Default"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_about_banner_5",
+        "label": "About Images"
+      },
+      {
+        "type": "textarea",
+        "id": "about_team_content_3",
+        "label": "Content 3",
+        "default": "Text Default"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_about_banner2",
+        "label": "Enable About Banner 2?"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_about_banner_2",
+        "label": "About Images"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title_about_text3",
+        "label": "Content",
+        "default": "Text Default"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

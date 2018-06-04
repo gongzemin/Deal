@@ -1,0 +1,46 @@
+
+{{ 'application.js' | asset_url | script_tag }}
+
+{% if template == "index"%}
+{% if settings.layout_fullpage %}
+{{ "jquery.fullPage.js" | asset_url | script_tag }}
+{% endif %}
+{% endif %}
+{% if template contains 'collection' %}
+{{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
+{% endif %}
+
+
+<script>
+   window.mc_submit = "subscribe";
+  window.mc_subscribing ="Your email address";
+  window.ajax_cart = {{settings.ajax_cart}};
+  window.enable_multilang = {{settings.enable_multilang}};
+   window.calculte_free_shipping_number = {{settings.calculte_free_shipping_number}};
+  window.money_format = "{{shop.money_with_currency_format}}";
+  window.shop_currency = "{{ shop.currency }}";
+  window.show_multiple_currencies = {{settings.enable_multiple_currencies}};
+  window.loading_url = "{{ 'loading.gif' | asset_url}}"; 
+  window.use_color_swatch = {{ settings.use_color_swatch }};
+  window.product_image_resize = {{settings.product_image_resize}};
+  window.enable_sidebar_multiple_choice = {{ settings.enable_sidebar_multiple_choice}};
+  window.file_url = "{{''|file_url}}";window.asset_url = "{{''|asset_url}}";
+  window.images_size = {
+    is_crop: {{ settings.product_image_crop }},
+    ratio_width : {{ settings.product_image_ratio_width }},ratio_height : {{ settings.product_image_ratio_height }},};
+</script>
+{% if settings.enable_multilang %}
+{% include 'translator' %}
+{% endif %}
+<script>
+  jQuery(window).scroll(function() {
+    if (jQuery(window).width() < 1025) {
+      var scroll = jQuery(window).scrollTop();
+      if (scroll > 50) {
+        jQuery("#header-mobile").addClass("is-ticky");
+      }else{
+        jQuery("#header-mobile").removeClass("is-ticky");
+      }
+    }
+  });
+</script>
